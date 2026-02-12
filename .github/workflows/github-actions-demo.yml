@@ -24,33 +24,27 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ---------- 1. Проверка обязательного задания (YAML → бинарный) ----------
       - name: Задание 0 – генерация .bin
         run: |
           python src/mandatory.py tests/schedule.yaml task.bin
           # Проверяем, что файл создался
-          test -f task.bin && echo "✅ task.bin создан"
+          test -f task.bin && echo "task.bin создан"
 
-      # ---------- 2. ДЗ №1: бинарный → JSON (самописный) ----------
       - name: ДЗ №1 – конвертация в JSON (ручной парсер)
         run: |
           python src/dop1.py task.bin output_manual.json
           # Сравниваем с эталоном
-          diff -u tests/expected.json output_manual.json || (echo "❌ JSON не совпадает с эталоном" && exit 1)
-
-      # ---------- 3. ДЗ №2: бинарный → JSON (библиотеки) ----------
+          diff -u tests/expected.json output_manual.json || (echo "JSON не совпадает с эталоном" && exit 1)
       - name: ДЗ №2 – конвертация в JSON (Yamlium + orjson/json)
         run: |
           python src/dop2.py task.bin output_lib.json
-          diff -u tests/expected.json output_lib.json || (echo "❌ JSON (библ) не совпадает" && exit 1)
+          diff -u tests/expected.json output_lib.json || (echo "JSON (библ) не совпадает" && exit 1)
 
-      # ---------- 4. ДЗ №3: бинарный → XML ----------
       - name: ДЗ №3 – конвертация в XML
         run: |
           python src/dop3.py task.bin output.xml
-          diff -u tests/expected.xml output.xml || (echo "❌ XML не совпадает" && exit 1)
+          diff -u tests/expected.xml output.xml || (echo "XML не совпадает" && exit 1)
 
-      # ---------- 5. ДЗ №4: сравнение производительности (без сохранения отчёта) ----------
       - name: ДЗ №4 – замер производительности (100 итераций)
         run: |
           python src/dop4.py   # скрипт сам выводит результат, проверяем exit code
