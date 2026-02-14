@@ -164,7 +164,7 @@ def binary_to_xml(input_bin, output_xml, root_name='task3'):
     # 4. Записываем с pretty-print
     write_pretty_xml(root, output_xml)
 
-    print(f'✅ XML сохранён в {output_xml}')
+    print(f'XML сохранён в {output_xml}')
 
 
 # ======================================================================
@@ -172,4 +172,5 @@ def binary_to_xml(input_bin, output_xml, root_name='task3'):
 # ======================================================================
 if __name__ == '__main__':
     # Укажите имена входного и выходного файлов
+
     binary_to_xml('task1.bin', 'task3.xml', root_name='task3')
