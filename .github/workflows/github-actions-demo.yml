@@ -47,19 +47,16 @@ jobs:
           python PythonProject3/dop3.py task1.bin task3.xml
           diff -u -w task3_ET.xml task3.xml || (echo XML не совпадает && exit 1)
 
-      # ---------- 5. ДЗ №4: сравнение производительности ----------
-      - name: ДЗ №4 – замер производительности (100 итераций)
+      - name: Доп №4 – замер 
         run: |
-          python src/dop4.py
+          python PythonProject3/dop4.py
 
-      # ---------- 6. Сохранение артефактов (обновлено до v4) ----------
       - name: Загрузка артефактов
-        # Обновлено до v4 [citation:8][citation:10]
         uses: actions/upload-artifact@v4
         with:
           name: results
           path: |
-            output_manual.json
-            output_lib.json
-            output.xml
-            task.bin
+            task1.json
+            task2.json
+            task3.xml
+            task1.bin
