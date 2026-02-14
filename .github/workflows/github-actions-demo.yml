@@ -31,12 +31,12 @@ jobs:
       - name: Доп №1 – конвертация в JSON 
         run: |
           python PythonProject3/dop1.py task1.bin task1.json
-          diff -u -w task1_ET.json task1.json || (echo "JSON" не совпадает с эталоном" && exit 1)
+          diff -u -w task1_ET.json task1.json || (echo JSON не совпадает с эталоном" && exit 1)
 
       - name: Доп №2 – конвертация в JSON 
         run: |
           python PythonProject3/dop2.py task1.bin task2.json
-          diff -u -w task2_ET.json task2.json || (echo "JSON" не совпадает" && exit 1)
+          diff -u -w task2_ET.json task2.json || (echo JSON не совпадает" && exit 1)
 
       # ---------- 4. ДЗ №3: бинарный → XML ----------
       - name: ДЗ №3 – конвертация в XML
