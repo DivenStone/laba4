@@ -12,5 +12,6 @@ data = yamlium.parse(yaml_text)
 with open('task2.bin', 'wb') as f:
     pickle.dump(data, f)
 
-print('Бинарный файл schedule.bin создан.')
+print('Бинарный файл создан.')
+
 print('Тип корневого объекта:', type(data).__name__)
