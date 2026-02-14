@@ -25,7 +25,7 @@ jobs:
 
       - name: Задание 0 - генерация .bin
         run: |
-          python src/1.py tests/primer1.yaml task.bin
+          python PythonProject3/1.py tests/primer1.yaml task.bin
           test -f task.bin && echo "task.bin создан"
 
       # ---------- 2. ДЗ №1: бинарный → JSON (самописный) ----------
