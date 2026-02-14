@@ -33,10 +33,12 @@ jobs:
           python PythonProject3/dop1.py task1.bin task1.json
           diff -u -w task1_ET.json task1.json || (echo JSON не совпадает с эталоном && exit 1)
 
-      - name: Доп №2 – конвертация в JSON 
+      - name: Доп №2 – конвертация в bin 
         run: |
-          python PythonProject3/dop2.py task1.bin task2.json
-          diff -u -w task2_ET.json task2.json || (echo JSON не совпадает && exit 1)
+          python PythonProject3/dop2.py task1.yml task2.bin
+          test -f task2.bin && echo "task2.bin создан"
+          python PythonProject3/dop2.py task2.bin task2.json
+          diff -u -w task2_ET.json task2.json || (echo JSON не совпадает с эталоном && exit 1)
 
       # ---------- 4. ДЗ №3: бинарный → XML ----------
       - name: ДЗ №3 – конвертация в XML
