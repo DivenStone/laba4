@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<task3>
+  <Monday>
+    <item>dis: Базы данных</item>
+    <item>
+      <type>лекция</type>
+      <aud>1404</aud>
+      <prepod>Николаев Владимир Вячеславович</prepod>
+      <time>15:30-17:00</time>
+    </item>
+    <item>dis: Дискретная математика(базовый уровень)</item>
+    <item>
+      <type>лекция</type>
+      <aud>2337</aud>
+      <prepod>Поляков Владимир Иванович</prepod>
+      <time>17:10-18:40</time>
+    </item>
+    <item>dis: Дискретная математика(базовый уровень)</item>
+    <item>
+      <type>практика</type>
+      <aud>2337</aud>
+      <prepod>Поляков Владимир Иванович</prepod>
+      <time>18:50-20:20</time>
+    </item>
+  </Monday>
+  <Saturday>
+    <item>dis: Английский язык B1.1</item>
+    <item>
+      <type>практика</type>
+      <aud>3212</aud>
+      <prepod>Морозова Анна Михайловна</prepod>
+      <time>15:30-17:00</time>
+    </item>
+    <item>dis: Английский язык B1.1</item>
+    <item>
+      <type>практика</type>
+      <aud>3212</aud>
+      <prepod>Морозова Анна Михайловна</prepod>
+      <time>17:10-18:40</time>
+    </item>
+  </Saturday>
+</task3>
