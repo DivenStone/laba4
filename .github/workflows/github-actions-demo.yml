@@ -28,26 +28,24 @@ jobs:
           python PythonProject3/1.py tests/task1.yml task1.bin
           test -f task1.bin && echo "task1.bin создан"
 
-      - name: Доп №1 – конвертация в JSON 
+      - name: Доп №1 - конвертация в JSON 
         run: |
           python PythonProject3/dop1.py task1.bin task1.json
           diff -u -w task1_ET.json task1.json || (echo JSON не совпадает с эталоном && exit 1)
 
-      - name: Доп №2 – конвертация в bin 
+      - name: Доп №2 - конвертация в bin 
         run: |
           python PythonProject3/dop2.py task1.yml task2.bin
           test -f task2.bin && echo "task2.bin создан"
-      - name: Доп №2.1 – конвертация в JSON 
+      - name: Доп №2.1 - конвертация в JSON 
         run: |
           python PythonProject3/dop2_1.py task12.bin task2.json
           diff -u -w task2_ET.json task2.json || (echo JSON не совпадает с эталоном && exit 1)
           
-
-      # ---------- 4. ДЗ №3: бинарный → XML ----------
-      - name: ДЗ №3 – конвертация в XML
+      - name: Доп №3 - конвертация в XML
         run: |
-          python src/dop3.py task.bin output.xml
-          diff -u -B tests/expected.xml output.xml || (echo "XML не совпадает" && exit 1)
+          python PythonProject3/dop3.py task1.bin task3.xml
+          diff -u -w task3_ET.xml task3.xml || (echo XML не совпадает && exit 1)
 
       # ---------- 5. ДЗ №4: сравнение производительности ----------
       - name: ДЗ №4 – замер производительности (100 итераций)
