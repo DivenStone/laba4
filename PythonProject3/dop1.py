@@ -150,7 +150,8 @@ def main():
     with open('task1.json', 'w', encoding='utf-8') as f:
         f.write(json_str)
 
-    print("Конвертация завершена. Результат в schedule.json")
+    print("Конвертация завершена")
 
 if __name__ == '__main__':
+
     main()
