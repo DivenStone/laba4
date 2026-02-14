@@ -12,38 +12,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout репозитория
+      - name: статы
         uses: actions/checkout@v4
-      - name: Установка Python
+      - name: Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Установка зависимостей
+      - name: подгрузка
         run: |
           pip install --upgrade pip
           pip install -r updating.txt
 
-      - name: Задание мейн - генерация .bin
+      - name: Задание мейн 
         run: |
           python PythonProject3/1.py tests/task1.yml task1.bin
           test -f task1.bin && echo "task1.bin создан"
 
-      - name: Доп №1 - конвертация в JSON 
+      - name: Доп №1
         run: |
           python PythonProject3/dop1.py task1.bin task1.json
           diff -u -w task1_ET.json task1.json || (echo JSON не совпадает с эталоном && exit 1)
 
-      - name: Доп №2 - конвертация в bin 
+      - name: Доп №2 
         run: |
           python PythonProject3/dop2.py task1.yml task2.bin
           test -f task2.bin && echo "task2.bin создан"
-      - name: Доп №2.1 - конвертация в JSON 
+      - name: Доп №2.1 
         run: |
           python PythonProject3/dop2_1.py task12.bin task2.json
           diff -u -w task2_ET.json task2.json || (echo JSON не совпадает с эталоном && exit 1)
           
-      - name: Доп №3 - конвертация в XML
+      - name: Доп №3 
         run: |
           python PythonProject3/dop3.py task1.bin task3.xml
           diff -u -w task3_ET.xml task3.xml || (echo XML не совпадает && exit 1)
