@@ -25,7 +25,7 @@ jobs:
       - name: Установка зависимостей
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r updating.txt
 
       # ---------- 1. Проверка обязательного задания (YAML → бинарный) ----------
       - name: Задание 0 – генерация .bin
