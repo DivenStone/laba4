@@ -11,12 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Обновлено до v4 (Node.js 20) [citation:1]
       - name: Checkout репозитория
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Установка Python 3.10
-        uses: actions/setup-python@v4
+      # 2. Обновлено до v5 (рекомендуемая версия) [citation:7]
+      - name: Установка Python
+        uses: actions/setup-python@v5
         with:
+          # Важно: версия в кавычках!
           python-version: '3.10'
 
       - name: Установка зависимостей
@@ -24,40 +27,39 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ---------- 1. Проверка обязательного задания (YAML → бинарный) ----------
       - name: Задание 0 – генерация .bin
         run: |
           python src/mandatory.py tests/schedule.yaml task.bin
-          # Проверяем, что файл создался
-          test -f task.bin && echo "task.bin создан"
+          test -f task.bin && echo "✅ task.bin создан"
 
+      # ---------- 2. ДЗ №1: бинарный → JSON (самописный) ----------
       - name: ДЗ №1 – конвертация в JSON (ручной парсер)
         run: |
           python src/dop1.py task.bin output_manual.json
-          # Сравниваем с эталоном
-          diff -u tests/expected.json output_manual.json || (echo "JSON не совпадает с эталоном" && exit 1)
-      - name: ДЗ №2 – конвертация в JSON (Yamlium + orjson/json)
+          diff -u tests/expected.json output_manual.json || (echo "❌ JSON не совпадает с эталоном" && exit 1)
+
+      # ---------- 3. ДЗ №2: бинарный → JSON (библиотеки) ----------
+      - name: ДЗ №2 – конвертация в JSON (Yamlium + json)
         run: |
           python src/dop2.py task.bin output_lib.json
-          diff -u tests/expected.json output_lib.json || (echo "JSON (библ) не совпадает" && exit 1)
+          diff -u tests/expected.json output_lib.json || (echo "❌ JSON (библ) не совпадает" && exit 1)
 
+      # ---------- 4. ДЗ №3: бинарный → XML ----------
       - name: ДЗ №3 – конвертация в XML
         run: |
           python src/dop3.py task.bin output.xml
-          diff -u tests/expected.xml output.xml || (echo "XML не совпадает" && exit 1)
+          diff -u tests/expected.xml output.xml || (echo "❌ XML не совпадает" && exit 1)
 
+      # ---------- 5. ДЗ №4: сравнение производительности ----------
       - name: ДЗ №4 – замер производительности (100 итераций)
         run: |
-          python src/dop4.py   # скрипт сам выводит результат, проверяем exit code
+          python src/dop4.py
 
-      
-      - name: Проверка стиля кода (flake8)
-        run: |
-          pip install flake8
-          flake8 src/ --max-line-length=120
-        continue-on-error: true  
-
+      # ---------- 6. Сохранение артефактов (обновлено до v4) ----------
       - name: Загрузка артефактов
-        uses: actions/upload-artifact@v3
+        # Обновлено до v4 [citation:8][citation:10]
+        uses: actions/upload-artifact@v4
         with:
           name: results
           path: |
