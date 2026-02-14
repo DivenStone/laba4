@@ -23,15 +23,14 @@ jobs:
           pip install --upgrade pip
           pip install -r updating.txt
 
-      - name: Задание 0 - генерация .bin
+      - name: Задание мейн - генерация .bin
         run: |
           python PythonProject3/1.py tests/task1.yml task1.bin
           test -f task1.bin && echo "task1.bin создан"
 
-      # ---------- 2. ДЗ №1: бинарный → JSON (самописный) ----------
-      - name: ДЗ №1 – конвертация в JSON (ручной парсер)
+      - name: Доп №1 – конвертация в JSON 
         run: |
-          python src/dop1.py task.bin output_manual.json
+          python PythonProject3/dop1.py task.bin output_manual.json
           diff -u tests/expected.json output_manual.json || (echo "JSON не совпадает с эталоном" && exit 1)
 
       # ---------- 3. ДЗ №2: бинарный → JSON (библиотеки) ----------
